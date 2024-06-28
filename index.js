@@ -10,6 +10,9 @@ const spinnies = new Spinnies({
   spinner: { interval: 200, frames: [" ", "_"], }
 })
 
+require('http')
+ .createServer(async (req, res) => {})
+ .listen(process.env?.PORT || 8080, () => true);
 async function Bot() {
   spinnies.add("spinner-2", { text: " ", color: "cyan" })
   const bot = new Telegraf(config.BOT_TOKEN);
@@ -20,8 +23,8 @@ fs.readdirSync("./plugins").forEach((plugin) => {
                     require("./plugins/" + plugin);
                 }
             });
-            console.log("ᴘʟᴜɢɪɴs ʟᴏᴀᴅᴇᴅ");
-          console.log("\n======[  ☞︎︎︎  ʟᴏɢs  ☜︎︎︎   ]======\n")
+            console.log("Plugins Loaded");
+          console.log("\n======[  L O G S  ]======\n")
 
   
   bot.on("message", async (msg) => {
