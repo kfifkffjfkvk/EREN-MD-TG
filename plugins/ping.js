@@ -4,7 +4,7 @@ const {
 
 cmd(
   {
-      name: "ping",
+      name: "/ping",
       category: "misc",
       desc: "To check ping"
   },
