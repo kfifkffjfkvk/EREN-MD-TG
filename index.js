@@ -14,8 +14,8 @@ require('http')
  .createServer(async (req, res) => {})
  .listen(process.env?.PORT || 8080, () => true);
 async function Bot() {
-  spinnies.add("spinner-2", { text: " ", color: "cyan" })
-  const bot = new Telegraf(config.BOT_TOKEN);
+  spinnies.add("spinner-2", { text: "TG-EREN-BOT", color: "cyan" });
+  const bot = new Telegraf(config.BOT_TOKEN, { polling: true });
 
   bot.start((m) => m.reply("Hello!"));
 fs.readdirSync("./plugins").forEach((plugin) => {
