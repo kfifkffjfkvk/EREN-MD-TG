@@ -4,19 +4,21 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "pm2 start . --attach --name tg-eren-bot",
+    "stop": "pm2 stop . --attach --name tg-eren-bot"
   },
   "keywords": [],
-  "author": "",
+  "author": "TOXIC-KICHUX",
   "license": "ISC",
   "dependencies": {
     "@types/node": "^18.0.6",
     "axios": "^1.6.8",
     "fs": "^0.0.1-security",
     "g-i-s": "^2.1.7",
+    "mongoose": "^8.4.0",
     "node-fetch": "^2.6.1",
     "path": "^0.12.7",
+    "pm2": "^5.4.1",
     "spinnies": "^0.5.1",
     "telegraf": "^4.16.3"
   }
