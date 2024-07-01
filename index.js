@@ -26,8 +26,8 @@ mongoose.connect(config.MONGO_DB_URI).then(() => {
 async function Bot() {
   spinnies.add("spinner-2", { text: "TG-EREN-BOT", color: "cyan" });
   const bot = new Telegraf(config.BOT_TOKEN, { polling: true });
-
-  bot.start((m) => m.replyWithPhoto({ url: "https://i.imgur.com/mZYqXPx.jpeg" },{ caption: "Hello!" }));
+  let buff = await (await fetch(config.START_IMG)).buffer();
+  bot.start((m) => m.replyWithPhoto({ source: buff },{ caption: "Hello!" }));
 fs.readdirSync("./plugins").forEach((plugin) => {
                 if (path.extname(plugin).toLowerCase() == ".js") {
                     require("./plugins/" + plugin);
