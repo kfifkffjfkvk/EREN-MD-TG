@@ -3,6 +3,7 @@ const config = require("./config");
 const { smsg } = require("./lib/smsg.js");
 const { commands } = require('./lib/plugins.js');
 const path = require('path');
+const fetch = require("node-fetch");
 const mongoose = require("mongoose");
 const util = require('util');
 const fs = require('fs');
