@@ -3,9 +3,10 @@ const config = require("./config");
 const { smsg } = require("./lib/smsg.js");
 const { commands } = require('./lib/plugins.js');
 const path = require('path');
-const util = require('util')
+const mongoose = require("mongoose");
+const util = require('util');
 const fs = require('fs');
-const Spinnies = require("spinnies")
+const Spinnies = require("spinnies");
 const spinnies = new Spinnies({
   spinner: { interval: 200, frames: [" ", "_"], }
 })
@@ -13,6 +14,14 @@ const spinnies = new Spinnies({
 require('http')
  .createServer(async (req, res) => {})
  .listen(process.env?.PORT || 8080, () => true);
+
+// Database connection(mongodb).
+mongoose.connect(config.MONGO_DB_URI).then(() => {
+ console.log("Successfully connected to mongodb database!");
+}).catch(() => {
+ console.log("Failed to connect mongodb database!");
+});
+
 async function Bot() {
   spinnies.add("spinner-2", { text: "TG-EREN-BOT", color: "cyan" });
   const bot = new Telegraf(config.BOT_TOKEN, { polling: true });
@@ -23,29 +32,15 @@ fs.readdirSync("./plugins").forEach((plugin) => {
                     require("./plugins/" + plugin);
                 }
             });
-            console.log("Plugins Loaded");
-          console.log("\n======[  L O G S  ]======\n")
-
+            console.log("\nPlugins Loaded...");
+        
   
   bot.on("message", async (msg) => {
-     //var ms;
      var m = smsg(msg, bot);
-      //let m = smsg(msg)
-      //console.log(util.format(m))
     
-      //console.log(JSON.parse(JSON.stringify(msg)))
-   // let command = m.text.trim().split(' ').shift().toLowerCase()
-   /* let args;
-        args = m.text
-        args = args.split(" ")
-        args.shift()
-*/
-/////////////////////////////////////////
-/////////////////////////////////////////
      commands.map(async (cmd) => {
               
-//if (cmd.fromMe && !( SUDO.split(",").includes(m.sender.split("@")[0]) || m.isSelf )) { return; }
-                  
+
                 let comman = m.text
                 ? m.text[0].toLowerCase() + m.text.slice(1).trim(): "";
 
