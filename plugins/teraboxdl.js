@@ -15,7 +15,7 @@ cmd({
                              { caption: `File name : ${result.file_name}\nFile size : ${result.size}` },
                              { reply_to_message_id : m.message.message_id });
       let vidbuff = await (await fetch(result.downloadUrl)).buffer();
-      return await m.replyWithVideo({ source: buff },{ reply_to_message_id : m.message.message_id } );
+      return await m.replyWithVideo({ source: vidbuff },{ reply_to_message_id : m.message.message_id } );
       } catch (e) {
         console.log(e);
       }
