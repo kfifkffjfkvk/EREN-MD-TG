@@ -8,10 +8,13 @@ cmd({
   async ({m, bot, args}) => {
     if (args.startsWith("https://terasharelink.com/")) {
       try {
-      await m.reply("Downloading...", { reply_to_message_id : m.message.message_id });
-      let data = await axios.get(`https://teraboxvideodownloader.nepcoderdevs.workers.dev/?url=${args}`);
-      let result = data.data.response[0].resolutions['Fast Download'];
-      let buff = await (await fetch(result)).buffer();
+      let { data } = await axios.get(`https://viper.xasena.me/api/terabox?url=${args}`);
+      let result = data.data
+      let imgbuff = await (await fetch(result.thumnail)).buffer();
+      await m.replyWithPhoto({ source: imgbuff },
+                             { caption: `File name : ${result.file_name}\nFile size : ${result.size}` },
+                             { reply_to_message_id : m.message.message_id });
+      let vidbuff = await (await fetch(result.downloadUrl)).buffer();
       return await m.replyWithVideo({ source: buff },{ reply_to_message_id : m.message.message_id } );
       } catch (e) {
         console.log(e);
